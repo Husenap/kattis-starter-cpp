@@ -102,6 +102,17 @@ You can search for `shared_string` to get an idea of how everything works.
 5. Run `scripts/gen` to regenerate the project.
 6. Now you can start writing code.
 
+# Troubleshooting
+### No module named 'requests'
+```
+Traceback (most recent call last):
+  File "/scripts/submit.py", line 9, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+```
+Try running `pip install requests`
+
+
 # Known Issues
 
 * It's currently not possible to read/write I/O using C-style `scanf/printf` because the local testing uses C++ streams.
