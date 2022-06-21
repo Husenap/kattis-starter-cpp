@@ -13,7 +13,14 @@ This is a template that can be used to setup a private repository where you can 
 
 # Prerequisites
 
-For the project to function, you need to have:
+Before you start installing things, check what you have:
+```sh
+> gcc --version
+> cmake --version
+> python --version
+> python3 --version
+```
+For the project to function, you need a few dependencies:
 * A bash shell to run the scripts in
 * A C++ compiler: GCC/MSVC/Clang
   * Ubuntu/WSL: Run `sudo apt update && sudo apt install build-essential`
@@ -31,7 +38,7 @@ It will take a minute to download the dependencies.
 project_root> scripts/gen
 ```
 ### Run all tests
-This will run all tests including unit tests for the shared
+This will run all tests including unit tests for the shared files.
 ```sh
 scripts/test
 ```
@@ -46,11 +53,11 @@ The name of a problem can be found in the URL of the problem (eg. `open.kattis.c
 ```sh
 scripts/prepare [problem_name]
 ```
-### Test
+### Test a specific problem
 ```sh
 scripts/test -R [problem_name]
 ```
-### Submit
+### Submit a problem
 ```sh
 scripts/submit [problem_name]
 ```
