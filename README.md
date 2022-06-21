@@ -91,6 +91,17 @@ From there you will get 3 options:
 └───thirdparty            # Contains CMake code for getting dependencies
 ```
 
+# Adding Shared Files
+Here are the steps to adding a shared file and writing unit tests for it.
+You can search for `shared_string` to get an idea of how everything works.
+
+1. Create a new file in `kattis/src/kattis/shared/`, eg. `shared_tree.hpp`.
+2. Add a path to your `.hpp` file in `kattis/CMakeLists.txt`.
+3. Create a new file in `kattis_test/src/shared/`, eg. `shared_tree.cpp`.
+4. Add a path to your `.cpp` file in `kattis_test/CMakeLists.txt`.
+5. Run `scripts/gen` to regenerate the project.
+6. Now you can start writing code.
+
 # Known Issues
 
 * It's currently not possible to read/write I/O using C-style `scanf/printf` because the local testing uses C++ streams.
