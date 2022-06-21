@@ -1,0 +1,44 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Test Problem",
+      "type": "shell",
+      "command": "scripts/test -R ${fileBasenameNoExtension}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": "$gcc",
+    },
+    {
+      "label": "Submit Problem",
+      "type": "shell",
+      "command": "scripts/submit ${fileBasenameNoExtension} -f <<< $'y'",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": "$gcc",
+    },
+    {
+      "label": "Prepare Problem",
+      "type": "shell",
+      "command": "scripts/prepare ${input:problemName}",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": "$gcc",
+    }
+  ],
+  "inputs": [
+    {
+      "id": "problemName",
+      "type": "promptString",
+      "description": "Problem Name",
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Expecting a problem name" >&2
+    exit 2
+fi
+
+# variable
+temp_dir=".build/preparation/"
+
+# download samples
+mkdir -p $temp_dir
+
+curl -L -o $temp_dir/$1.zip https://open.kattis.com/problems/$1/file/statement/samples.zip
+unzip -o $temp_dir/$1.zip -d kattis_test/input/$1
+if [ "$?" -ne 0 ]; then
+    echo "Failed to uzip problem $1" >&2
+    exit 1
+fi
+
+rm -rf $temp_dir
+
+# prepare problem file
+cp kattis/src/kattis/problems/{_template,$1}.hpp
+sed -i "s/_template/_$1/" kattis/src/kattis/problems/$1.hpp
+
+# regenerate cmake
+bash $(dirname $0)/gen

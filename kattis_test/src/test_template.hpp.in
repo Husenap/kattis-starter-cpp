@@ -1,0 +1,4 @@
+#include <@problem@>
+TEST(kattis, @problem_name@) {
+  run_tests("@problem_name@", _@problem_name@::solve);
+}

@@ -1,0 +1,7 @@
+.build/
+.vscode/settings.json
+.deps/
+.cache/
+.ccls-cache/
+compile_commands.json
+.kattisrc
