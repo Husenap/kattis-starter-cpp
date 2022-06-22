@@ -22,7 +22,9 @@ rm -rf $temp_dir
 
 # prepare problem file
 cp kattis/src/kattis/problems/{_template,$1}.hpp
-sed -i "s/_template/_$1/" kattis/src/kattis/problems/$1.hpp
+sed -i.bak "s/_template/_$1/" kattis/src/kattis/problems/$1.hpp
+rm kattis/src/kattis/problems/$1.hpp.bak
+
 
 # regenerate cmake
 bash $(dirname $0)/gen
