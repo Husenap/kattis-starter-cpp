@@ -4,6 +4,7 @@ file(GLOB src_problems ${CMAKE_CURRENT_SOURCE_DIR}/src/kattis/problems/[^_]*.hpp
 
 set(src_shared
     "src/kattis/shared/shared_constants.hpp"
+    "src/kattis/shared/shared_format.hpp"
     "src/kattis/shared/shared_string.hpp"
     "src/kattis/shared/shared_types.hpp")
 

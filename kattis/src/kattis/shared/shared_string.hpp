@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -16,20 +17,28 @@ inline std::vector<std::string> split(const std::string& s, char delimiter) {
   return tokens;
 }
 
-template <typename... Args>
-inline void format_to(std::ostream& out, std::string_view format_string, Args&&... args) {
-  ((out << format_string.substr(0, format_string.find("{}")),
-    format_string.remove_prefix(format_string.find("{}") + 2),
-    out << args),
-   ...);
-  out << format_string;
+template <typename TransformFunc>
+inline auto split(const std::string& s, char delimiter, TransformFunc transform) {
+  const auto                          splits = split(s, delimiter);
+  std::vector<decltype(transform(s))> tokens;
+  for (const auto& token : splits) {
+    tokens.push_back(transform(token));
+  }
+  return tokens;
 }
 
-template <typename... Args>
-inline auto format(std::string_view format_string, Args&&... args) {
-  std::ostringstream output;
-  format_to(output, format_string, std::forward<Args>(args)...);
-  return output.str();
+template <typename TransformFunc>
+inline auto safe_split(const std::string& s, char delimiter, TransformFunc transform) {
+  const auto                                         splits = split(s, delimiter);
+  std::vector<std::optional<decltype(transform(s))>> tokens;
+  for (const auto& token : splits) {
+    try {
+      tokens.push_back(transform(token));
+    } catch (...) {
+      tokens.push_back(std::nullopt);
+    }
+  }
+  return tokens;
 }
 
 }  // namespace shared

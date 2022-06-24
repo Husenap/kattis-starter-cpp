@@ -5,6 +5,7 @@ include("GenerateTests.cmake")
 file(GLOB_RECURSE src_problems ${CMAKE_CURRENT_BINARY_DIR}/src/tests/*)
 
 set(src_shared
+    "src/shared/shared_format.cpp"
     "src/shared/shared_string.cpp")
 
 set(src_files
