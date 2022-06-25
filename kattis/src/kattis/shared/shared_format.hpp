@@ -3,6 +3,7 @@
 #include <optional>
 #include <sstream>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 namespace shared {
@@ -27,9 +28,10 @@ inline auto format(std::string_view format_string, Args&&... args) {
 
 template <typename T>
 std::ostream& operator<<(std::ostream& out, const std::vector<T>& v) {
-  out << "[\n";
-  for (auto& e : v) {
-    out << "  " << e << '\n';
+  out << "[";
+  for (std::size_t i = 0; i < v.size(); ++i) {
+    if (i > 0) out << ", ";
+    out << v[i];
   }
   out << "]";
   return out;
@@ -48,5 +50,16 @@ std::ostream& operator<<(std::ostream& out, const std::optional<T>& p) {
   } else {
     out << "{nullopt}";
   }
+  return out;
+}
+
+template <typename T, size_t N, typename = std::enable_if_t<!std::is_same<T, char>::value>>
+std::ostream& operator<<(std::ostream& out, const T (&a)[N]) {
+  out << "[";
+  for (std::size_t i = 0; i < N; ++i) {
+    if (i > 0) out << ", ";
+    out << a[i];
+  }
+  out << "]";
   return out;
 }
