@@ -40,7 +40,7 @@ project_root> scripts/gen
 ### Run all tests
 This will run all tests including unit tests for the shared files.
 ```sh
-scripts/test
+project_root> scripts/test
 ```
 
 # Solving Kattis Problems
